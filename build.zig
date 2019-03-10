@@ -29,7 +29,8 @@ pub fn build(b: *Builder) !void {
     exe.addBuildOption([]const u8, "bootloader_exe_path", b.fmt("\"{}\"", bootloader.getOutputPath()));
     exe.step.dependOn(&bootloader.step);
 
-    const run_objcopy = b.addSystemCommand([][]const u8{
+    var run_objcopy = exe.run();
+    run_objcopy.addArgs([][]const u8{
         "objcopy", exe.getOutputPath(),
         "-O", "binary",
         "clashos.bin",
