@@ -16,7 +16,7 @@ extern var __end_init: u8;
 comptime {
     // .text.boot to keep this in the first portion of the binary
     // Note: this code cannot be changed via the bootloader.
-    asm volatile (
+    asm (
         \\.section .text.boot
         \\.globl _start
         \\_start:

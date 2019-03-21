@@ -11,7 +11,7 @@ pub fn read(reg: usize) u32 {
 }
 
 pub fn bigTimeExtraMemoryBarrier() void {
-    asm volatile (
+    asm (
         \\ mcr    p15, 0, ip, c7, c5, 0        @ invalidate I cache
         \\ mcr    p15, 0, ip, c7, c5, 6        @ invalidate BTB
         \\ dsb
