@@ -125,6 +125,6 @@ pub fn dumpMemory(address: usize, size: usize) void {
 fn delay(count: usize) void {
     var i: usize = 0;
     while (i < count) : (i += 1) {
-        asm volatile ("mov w0, w0");
+        asm volatile ("ADDI x0, x0, 0;");
     }
 }

@@ -2,6 +2,7 @@ ENTRY(boot)
 
 SECTIONS {
     kernel_main = 0x100; /* Must match value from kernel linker script */
+	__stack_pointer$ = 0x8000000;
 
     . = 0x8800000; /* Must match debug.bootloader_address */
 

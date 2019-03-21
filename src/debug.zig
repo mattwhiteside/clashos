@@ -44,7 +44,7 @@ pub fn panic(stack_trace: ?*builtin.StackTrace, comptime fmt: []const u8, args: 
 
 pub fn wfe_hang() noreturn {
     while (true) {
-        asm volatile ("wfe");
+        asm volatile ("# wfe #TODO: find RISC-V equivalent");
     }
 }
 

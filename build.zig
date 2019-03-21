@@ -7,7 +7,7 @@ pub fn build(b: *Builder) !void {
     const want_gdb = b.option(bool, "gdb", "Build for using gdb with qemu") orelse false;
     const want_pty = b.option(bool, "pty", "Create a separate TTY path") orelse false;
 
-    const arch = builtin.Arch{ .aarch64 = builtin.Arch.Arm64.v8 };
+    const arch = builtin.Arch.riscv64;
     const environ = builtin.Abi.eabihf;
 
     // First we build just the bootloader executable, and then we build the actual kernel

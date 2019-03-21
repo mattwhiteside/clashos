@@ -20,17 +20,17 @@ comptime {
         \\.section .text.boot
         \\.globl _start
         \\_start:
-        \\ mrs x0,mpidr_el1
-        \\ mov x1,#0xC1000000
-        \\ bic x0,x0,x1
-        \\ cbz x0,master
-        \\ b hang
+        \\ #mrs x0,mpidr_el1 #TODO: find RISC-V equivalent
+        \\ lui x1, 0xC1000
+        \\ #bic x0,x0,x1
+        \\ #cbz x0,master
+        \\ j hang
         \\master:
-        \\ mov sp,#0x08000000
-        \\ bl kernel_main
+        \\ la sp,__stack_pointer$
+        \\ call kernel_main
         \\hang:
-        \\ wfe
-        \\ b hang
+        \\ #wfe #TODO: find RISC-V equivalent
+        \\ j hang
     );
 }
 
@@ -131,8 +131,8 @@ fn serialLoop() noreturn {
             }
             serial.log("Loading new image...\n");
             asm volatile (
-                \\mov sp,#0x08000000
-                \\bl bootloader_main
+                \\li sp, 0x08000000
+                \\call bootloader_main
                             :
                 : [arg0] "{x0}" (start_addr),
                   [arg1] "{x1}" (bytes_left)
