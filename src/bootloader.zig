@@ -16,7 +16,7 @@ export fn bootloader_main(start_addr: [*]u8, len: usize) linksection(".text.firs
         start_addr[i] = serial.readByte();
     }
     asm volatile (
-        \\la sp, __stack_pointer$
+        \\lui sp, 0x80000
         \\call kernel_main
     );
     unreachable;

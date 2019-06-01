@@ -41,5 +41,6 @@ SECTIONS {
         __bss_end = .;
     }
 
+    /*bootloader_main = 0x8800000; Must match bootloader linker script */
     bootloader_main = 0x8800000; /* Must match bootloader linker script */
 }

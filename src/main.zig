@@ -26,7 +26,8 @@ comptime {
         \\ #cbz x0,master
         \\ j hang
         \\master:
-        \\ la sp,__stack_pointer$
+        \\#la sp, 0x80000000
+        \\ lui sp, 0x80000
         \\ call kernel_main
         \\hang:
         \\ #wfe #TODO: find RISC-V equivalent
